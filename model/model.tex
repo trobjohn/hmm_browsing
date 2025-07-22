@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+
+% ----------- PACKAGES -----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{lmodern} % clean font
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{geometry}
+% ----------- PAGE SETUP -----------
+\geometry{margin=1in}
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+\linespread{1.15}
+
+% ----------- HYPERREF COLORS -----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=magenta,
+  urlcolor=blue
+}
+
+% ----------- THEOREMS -----------
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+% ----------- TITLE INFO -----------
+\title{Title of the Paper}
+\author{Terry Johnson\\
+\small University of Virginia \\
+\small \texttt{terry.johnson@example.edu}}
+\date{\today}
+
+% ----------- BEGIN DOCUMENT -----------
+\begin{document}
+
+\section*{Model}
+
+\begin{itemize}
+\item{ The \emph{ideology space} is $\mathcal{I} = \{ -1, ..., 0, ..., +1\}$ with $L$ elements }
+\item{ $\theta_{it} \in \mathcal{I}$ is the ideology of user $i$ at time $t$}
+\item{A page is a tuple, $(v_j, \mu_{j}, \sigma_j^2, \alpha_j,\beta_j)$ where
+\begin{itemize}
+\item{The variables $(\mu_j, \sigma_j^2)$ govern the production of its content when visited. This distribution is a quantized normal, $N_j = \Phi((x-\mu_j)/\sigma_j)$, over $\mathcal{I}$.}
+\item{The variables $(\alpha_j, \beta_j)$ govern the influence it has over users after observing content. This distribution is a quantized Kamuraswamy, $K_j(x) = 1 - (1-x^\alpha_j)^{\beta_j}$, over $\mathcal{I}$}
+\end{itemize}}
+\item{The user's expected utility from visiting page $j$ is 
+$$
+U_j(\theta_{it}) = \int_{\mathbb{R}} v_j - \left|\dfrac{\theta_{it}-n}{w} \right|^\tau d N_j(n)
+$$
+where $(u_0, w, \tau)$ are non-negative parameters. A user visits page $j$ with probability
+$$
+p[j|\theta_{it}] = \dfrac{e^{U_j(\theta_{it})}}{1 + \sum_{j'} e^{U_{j'}(\theta_{it})}} \mathbb{I}\{ U_j(\theta_{it}) \geq 0  \},
+$$ 
+and ends the browsing session with probability
+$$
+p[EOS|\theta_{it}] = \dfrac{1}{1 + \sum_{j'} e^{U_{j'}(\theta_{it})}}
+$$ }
+\item{After a user with ideology $\theta_{it}$ visits page $j$ and observes content $n_{jt}$, their ideology transitions to a point in the interval $[\theta_{it}\wedge n_{jt}, \theta_{it}\vee n_{jt}] \cap \mathcal{I}$. This transition occurs as Kamuraswamy, with
+$$
+x_{ij} = \dfrac{}{}
+$$
+}
+\end{itemize}
+So a model is a tuple $(\tau, w)$ of consumer parameters, and tuples $\{(v_j, \mu_j, \sigma^2_j, \alpha_j, \beta_j)\}_{j=1,...,J}$, all to be estimated from transition data at the user level.
+
+
+\section*{Computation}
+
+A path is a sequence $\pi_i
+
+
+
+\end{document}
